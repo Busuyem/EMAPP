@@ -35,15 +35,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @forelse ($users as $user)
                                 <tr>
-                                    <td>{{ auth()->user()->first_name }}</td>
-                                    <td>{{ auth()->user()->last_name }}</td>
-                                    <td>{{ auth()->user()->username }}</td>
-                                    <td>{{ auth()->user()->email }}</td>
-                                    <td>{{ auth()->user()->created_at }}</td>
+                                    <td>{{ $user->first_name }}</td>
+                                    <td>{{ $user->last_name }}</td>
+                                    <td>{{ $user->username }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->created_at }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="" class="btn btn-primary mr-1 btn-sm">Edit</a>
+                                            <a href="{{ route('users.edit', $user) }}" class="btn btn-primary mr-1 btn-sm">Edit</a>
                                             <form action="">
                                                 <button class="btn btn-danger btn-sm">Delete</button>
                                             </form>
@@ -51,6 +52,10 @@
 
                                     </td>
                                 </tr>
+                                @empty
+                                    No User Registered Yet!
+                                @endforelse
+
                             </tbody>
                             <tfoot>
                                 <tr>

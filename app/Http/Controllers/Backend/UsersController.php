@@ -15,7 +15,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('users.index');
+        $users = User::all();
+
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -58,7 +60,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
     /**
