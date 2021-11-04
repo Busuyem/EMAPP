@@ -18,12 +18,13 @@
                         <a href="{{ route('users.create') }}" class="btn btn-primary mr-1 btn-sm">Create New User</a>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="input-group mb-2 col-md-5 float-right">
-                        <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username with two button addons">
-                        <button class="btn btn-outline-secondary" type="button">Search</button>
-                    </div>
-
+                    <form action="{{ route('users.index') }}" method="Get">
+                        <div class="card-body">
+                            <div class="input-group mb-2 col-md-5 float-right">
+                                <input type="text" name="search" value="{{ old('search') }}" class="form-control" placeholder="Search" aria-label="Recipient's username with two button addons">
+                                <button class="btn btn-outline-secondary" type="submit">Search</button>
+                            </div>
+                        </form>
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>

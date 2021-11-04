@@ -19,6 +19,15 @@ class UsersController extends Controller
     {
         $users = User::all();
 
+        if(request()->has('search')){
+            $users = User::where('email', 'LIKE', '%'.request()->search.'%')
+            ->orWhere('first_name', 'LIKE', '%'.request()->search.'%')
+            ->orWhere('last_name', 'LIKE', '%'.request()->search.'%')
+            ->orWhere('username', 'LIKE', '%'.request()->search.'%')
+            ->get();
+        }
+
+
         return view('users.index', compact('users'));
     }
 
@@ -91,8 +100,16 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
-        toast($user->username.' has been deleted successfully!','success')->timerProgressBar();
-        return back();
+
+        if(auth()->user()->id !== $user->id){
+
+            return back()->with('toast_success', 'You don\'t have the right to delete. '.$user->username);
+
+        }else{
+
+            $user->delete();
+
+            return back()->with('toast_success', 'You have deleted '.$user->username.'successfully.');
+        }
     }
 }

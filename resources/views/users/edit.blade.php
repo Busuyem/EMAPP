@@ -15,7 +15,11 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Edit User's Details</h6>
+                    <div class="float-right">
+                        <a href="{{ route('users.index') }}" class="btn btn-primary">Go Back</a>
+                    </div>
                 </div>
+
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-10 offset-lg-1">
@@ -36,7 +40,6 @@
                                             </span>
                                         @enderror
                                     </div>
-s
                                     <div class="form-group">
                                         <label for="last_name">Last Name</label>
                                         <input type="text" name="last_name" value="{{ old('last_name', $user->last_name) }}" class="form-control form-control-user @error('last_name') is-invalid @enderror"
