@@ -33,7 +33,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{ route('users.index') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -248,7 +248,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->username }}</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    @auth{{ auth()->user()->username }}@endauth</span>
                                 <i class="far fa-user-circle fa-lg"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -331,7 +332,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin.min.js') }}"></script>
-
+    @include('sweetalert::alert')
 </body>
 
 </html>

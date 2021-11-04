@@ -10,11 +10,13 @@
     <div class="row justify-content-center">
 
         <div class="col-xl-10 col-lg-12 col-md-9">
-
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                    <div class="float-right">
+                        <a href="{{ route('users.create') }}" class="btn btn-primary mr-1 btn-sm">Create New User</a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="input-group mb-2 col-md-5 float-right">
@@ -45,7 +47,9 @@
                                     <td>
                                         <div class="d-flex">
                                             <a href="{{ route('users.edit', $user) }}" class="btn btn-primary mr-1 btn-sm">Edit</a>
-                                            <form action="">
+                                            <form action="{{ route('users.destroy', $user) }}" method="post">
+                                                @method('delete')
+                                                @csrf
                                                 <button class="btn btn-danger btn-sm">Delete</button>
                                             </form>
                                         </div>

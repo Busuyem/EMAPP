@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\dataRequest;
 use App\Models\User;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -27,7 +29,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -36,9 +38,15 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(dataRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        User::create($validated);
+
+        return redirect()->route('users.index');
+
+        toast('Success Toast','success')->autoClose(5000);
     }
 
     /**
@@ -83,6 +91,8 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        toast($user->username.' has been deleted successfully!','success')->timerProgressBar();
+        return back();
     }
 }
